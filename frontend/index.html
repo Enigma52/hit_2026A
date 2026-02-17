@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Election Admin Panel</title>
+    <style>
+      body { font-family: Arial, sans-serif; margin: 2rem; background: #f7f8fa; }
+      section { background: #fff; border-radius: 10px; padding: 1rem; margin-bottom: 1rem; box-shadow: 0 2px 8px rgba(0,0,0,.08); }
+      input, button { margin: .25rem; padding: .5rem; }
+      .row { display: flex; flex-wrap: wrap; gap: .5rem; align-items: center; }
+      #log { white-space: pre-wrap; background: #10141a; color: #e6edf3; padding: 1rem; border-radius: 8px; min-height: 8rem; }
+    </style>
+  </head>
+  <body>
+    <h1>Decentralized Voting – Admin</h1>
+
+    <section>
+      <h3>1) Connect</h3>
+      <div class="row">
+        <input id="contractAddress" size="52" placeholder="ElectionDapp contract address" />
+        <button id="connectBtn">Connect Wallet</button>
+      </div>
+    </section>
+
+    <section>
+      <h3>2) Add Candidate (name + 3 issue positions)</h3>
+      <div class="row">
+        <input id="candName" placeholder="Candidate Name" />
+        <input id="p0" type="number" placeholder="Issue 1 (-10..10)" />
+        <input id="p1" type="number" placeholder="Issue 2 (-10..10)" />
+        <input id="p2" type="number" placeholder="Issue 3 (-10..10)" />
+        <button id="addCandBtn">Add</button>
+      </div>
+    </section>
+
+    <section>
+      <h3>3) Prepare Voter Merkle Root</h3>
+      <div class="row">
+        <input id="merkleRoot" size="70" placeholder="0x..." />
+        <button id="setMerkleBtn">Set Root</button>
+      </div>
+    </section>
+
+    <section>
+      <h3>4) Schedule Election Window (future start/end timestamps)</h3>
+      <div class="row">
+        <input id="startTs" type="number" placeholder="start unix timestamp" />
+        <input id="endTs" type="number" placeholder="end unix timestamp" />
+        <button id="scheduleBtn">Schedule</button>
+      </div>
+    </section>
+
+    <section>
+      <h3>5) Ended Election: Winner + Ranking</h3>
+      <div class="row">
+        <button id="resultsBtn">Load Results</button>
+      </div>
+      <ol id="ranking"></ol>
+    </section>
+
+    <section>
+      <h3>Log</h3>
+      <div id="log"></div>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/ethers@6.13.2/dist/ethers.umd.min.js"></script>
+    <script src="./main.js"></script>
+  </body>
+</html>
